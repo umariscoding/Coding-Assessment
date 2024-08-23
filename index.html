@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Render Results</title>
+  <script>
+
+    //Asynchronous function to fetch content from a given URL and insert it into a specified HTML element
+    async function fetchContent(url, containerId) {
+      const response = await fetch(url);
+      const content = await response.text();
+      document.getElementById(containerId).innerHTML = content;
+    }
+
+    //Event listener for when the DOM content is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchContent('/chat/3/messages', 'chat3-messages');
+      fetchContent('/chat/8/messages', 'chat8-messages');
+      fetchContent('/user/100', 'user100');
+      fetchContent('/message/459', 'message459');
+    });
+  </script>
+</head>
+<body>
+    <h1>Echo Messages for Chat ID = 3 Here as HTML</h1>
+    <div id="chat3-messages"></div>
+
+    <h1>Render Messages for Chat ID = 8 Here as JSON</h1>
+    <div id="chat8-messages"></div>
+
+    <h1>Render User ID = 100 Here as JSON</h1>
+    <div id="user100"></div>
+    
+    <h1>Echo Message ID = 459 Here as HTML</h1>
+    <div id="message459"></div>
+</body>
+</html>
